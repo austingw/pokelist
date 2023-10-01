@@ -1,7 +1,7 @@
 import PokeList from "./components/PokeList";
 import { Pokemon } from "./types/Pokemon";
 import getList from "./utils/getList";
-import { Flex, Stack, Text } from "@mantine/core";
+import { Flex, Group, Text } from "@mantine/core";
 
 export default async function Home() {
   const initialData: Pokemon[] = await getList();
@@ -15,16 +15,25 @@ export default async function Home() {
         align={"center"}
         justify={"center"}
       >
-        <Stack bg={"black"} h={"100%"} w={"100%"}>
+        <Group
+          h={200}
+          w={"100%"}
+          align="center"
+          justify="center"
+          px={30}
+          bg={"black"}
+          style={{
+            boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.75)",
+          }}
+        >
           <Text
             fz={80}
             variant="gradient"
-            gradient={{ from: "red", to: "white", deg: 235 }}
+            gradient={{ from: "#ef3b36", to: "white" }}
           >
-            Pokelist
+            Pokélist
           </Text>
-          <Text>A list of Pokemon {initialData.length}</Text>
-        </Stack>
+        </Group>
         <PokeList initialData={initialData} />
       </Flex>
     </>
