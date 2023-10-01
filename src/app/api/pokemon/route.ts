@@ -1,3 +1,4 @@
+import { Pokemon } from "@/app/types/Pokemon";
 import axios from "axios";
 
 export async function GET() {
@@ -10,7 +11,7 @@ export async function GET() {
       return res;
     });
 
-  let data = [];
+  let data: Pokemon[] = [];
   for await (const item of reponse?.data?.results) {
     const pokemon = await axios
       .get(item.url)
@@ -20,7 +21,18 @@ export async function GET() {
       .then((res) => {
         return res;
       });
-    data.push(pokemon?.data);
+    data.push({
+      abilities: pokemon?.data?.abilities,
+      base_experience: pokemon?.data?.base_experience,
+      height: pokemon?.data?.height,
+      id: pokemon?.data?.id,
+      moves: pokemon?.data?.moves,
+      name: pokemon?.data?.name,
+      sprites: pokemon?.data?.sprites,
+      stats: pokemon?.data?.stats,
+      types: pokemon?.data?.types,
+      weight: pokemon?.data?.weight,
+    });
   }
 
   return Response.json({ data });
