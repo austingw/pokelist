@@ -26,13 +26,13 @@ const PokeList = ({ initialData }: PokeListProps) => {
   return (
     <>
       <ScrollArea>
-        <Stack w={"100%"} h={"100%"}>
+        <Stack w={"100vw"} h={"100%"} py={10} align="center">
           {initialData.map((pokemon: any) => {
             return (
               <Group
                 align="center"
-                justify="center"
-                w={"100%"}
+                justify="space-between"
+                w={"80vw"}
                 key={pokemon.name}
                 className={classes.row}
                 onClick={() => {
@@ -40,15 +40,21 @@ const PokeList = ({ initialData }: PokeListProps) => {
                   open();
                 }}
               >
-                <Text>{pokemon.id}</Text>
+                <Text
+                  fz={30}
+                  style={{
+                    textTransform: "capitalize",
+                  }}
+                >
+                  #{pokemon.id} - {pokemon.name}
+                </Text>
+
                 <Image
                   src={pokemon.sprites.front_default}
                   alt={pokemon.name}
                   w={100}
                   h={100}
                 />
-
-                <Text>{pokemon.name}</Text>
               </Group>
             );
           })}
@@ -57,7 +63,8 @@ const PokeList = ({ initialData }: PokeListProps) => {
       <Modal
         opened={opened}
         onClose={close}
-        size="calc(100vw - 3rem)"
+        size="75vw"
+        centered
         withCloseButton={false}
         padding={0}
       >
