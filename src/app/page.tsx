@@ -1,13 +1,10 @@
 import PokeList from "./components/PokeList";
-import styles from "./page.module.css";
 import { Pokemon } from "./types/Pokemon";
 import getList from "./utils/getList";
-import { Flex, Group, Image, ScrollArea, Stack, Text } from "@mantine/core";
+import { Flex, Stack, Text } from "@mantine/core";
 
 export default async function Home() {
   const initialData: Pokemon[] = await getList();
-
-  console.log("initialData", initialData);
 
   return (
     <>
@@ -22,7 +19,7 @@ export default async function Home() {
           <Text
             fz={80}
             variant="gradient"
-            gradient={{ from: "red", to: "white" }}
+            gradient={{ from: "red", to: "white", deg: 235 }}
           >
             Pokelist
           </Text>
