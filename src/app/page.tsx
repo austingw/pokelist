@@ -1,9 +1,11 @@
+import PokeList from "./components/PokeList";
 import styles from "./page.module.css";
+import { Pokemon } from "./types/Pokemon";
 import getList from "./utils/getList";
 import { Flex, Group, Image, ScrollArea, Stack, Text } from "@mantine/core";
 
 export default async function Home() {
-  const initialData = await getList();
+  const initialData: Pokemon[] = await getList();
 
   console.log("initialData", initialData);
 
@@ -26,6 +28,7 @@ export default async function Home() {
           </Text>
           <Text>A list of Pokemon {initialData.length}</Text>
         </Stack>
+        <PokeList initialData={initialData} />
       </Flex>
     </>
   );
