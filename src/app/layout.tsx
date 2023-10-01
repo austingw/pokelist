@@ -1,7 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import "@mantine/core/styles.css";
-
+import "@mantine/carousel/styles.css";
 import { MantineProvider, ColorSchemeScript, createTheme } from "@mantine/core";
 import Providers from "./utils/providers";
 import theme from "./theme";
