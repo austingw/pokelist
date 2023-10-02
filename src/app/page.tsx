@@ -34,7 +34,7 @@ export default async function Home() {
           variant="gradient"
           gradient={{ from: "#ef3b36", to: "white" }}
         >
-          Pokélist
+          Pokédex
         </Text>
       </Group>
       <PokeList initialData={initialData} />
