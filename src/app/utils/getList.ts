@@ -7,7 +7,7 @@ interface getListParams {
 
 const getList = async ({ searchTerm, page }: getListParams) => {
   const response = await axios
-    .get(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/pokemon`, {
+    .get(`/api/pokemon`, {
       params: {
         searchTerm,
         page,
