@@ -1,4 +1,5 @@
 import { Pokemon } from "@/app/types/Pokemon";
+import fetchPokemonDetails from "@/app/utils/fetPokemonDetails";
 import axios from "axios";
 import { NextRequest } from "next/server";
 
@@ -50,35 +51,15 @@ export async function GET(request: NextRequest) {
       return searchTerm && item?.name?.includes(searchTerm.toLowerCase());
     });
 
-    //GET pokemon details for each search result
-    let data: Pokemon[] = [];
-    for await (const item of searchResults) {
-      const pokemon = await axios
-        .get(item.url)
-        .catch((err) => {
-          console.error("Err", err);
-        })
-        .then((res) => {
-          return res;
-        });
-      data.push({
-        abilities: pokemon?.data?.abilities,
-        base_experience: pokemon?.data?.base_experience,
-        height: pokemon?.data?.height,
-        id: pokemon?.data?.id,
-        moves: pokemon?.data?.moves,
-        name: pokemon?.data?.name,
-        sprites: pokemon?.data?.sprites,
-        stats: pokemon?.data?.stats,
-        types: pokemon?.data?.types,
-        weight: pokemon?.data?.weight,
-      });
-    }
+    //fetch pokemon details for each search result
+    const data: Pokemon[] = await Promise.all(
+      searchResults.map((pokemon: any) => fetchPokemonDetails(pokemon.url))
+    );
 
     //return the search results
     return Response.json({ data });
   } else {
-    //else we get all pokemon 151 at a time
+    //default behavior is to get all pokemon 151 at a time
     const response = await axios
       .get(
         `https://pokeapi.co/api/v2/pokemon?limit=151&offset=${
@@ -93,29 +74,12 @@ export async function GET(request: NextRequest) {
       });
 
     //GET pokemon details for each search result
-    let data: Pokemon[] = [];
-    for await (const item of response?.data?.results) {
-      const pokemon = await axios
-        .get(item.url)
-        .catch((err) => {
-          console.error("Err", err);
-        })
-        .then((res) => {
-          return res;
-        });
-      data.push({
-        abilities: pokemon?.data?.abilities,
-        base_experience: pokemon?.data?.base_experience,
-        height: pokemon?.data?.height,
-        id: pokemon?.data?.id,
-        moves: pokemon?.data?.moves,
-        name: pokemon?.data?.name,
-        sprites: pokemon?.data?.sprites,
-        stats: pokemon?.data?.stats,
-        types: pokemon?.data?.types,
-        weight: pokemon?.data?.weight,
-      });
-    }
+    const data: Pokemon[] = await Promise.all(
+      response?.data.results.map((pokemon: any) =>
+        fetchPokemonDetails(pokemon.url)
+      )
+    );
+
     return Response.json({ data });
   }
 }
