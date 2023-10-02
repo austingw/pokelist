@@ -1,5 +1,5 @@
-import { Pokemon } from "@/app/types/Pokemon";
-import fetchPokemonDetails from "@/app/utils/fetPokemonDetails";
+import { Details, Pokemon } from "@/app/types/Pokemon";
+import fetchPokemonDetails from "@/app/utils/fetchPokemonDetails";
 import axios from "axios";
 import { NextRequest } from "next/server";
 
@@ -47,13 +47,15 @@ export async function GET(request: NextRequest) {
       });
 
     //filter ALL pokemon names by the search term
-    const searchResults = await response?.data?.results?.filter((item: any) => {
-      return searchTerm && item?.name?.includes(searchTerm.toLowerCase());
-    });
+    const searchResults = await response?.data?.results?.filter(
+      (item: Details) => {
+        return searchTerm && item?.name?.includes(searchTerm.toLowerCase());
+      }
+    );
 
     //fetch pokemon details for each search result
     const data: Pokemon[] = await Promise.all(
-      searchResults.map((pokemon: any) => fetchPokemonDetails(pokemon.url))
+      searchResults.map((pokemon: Details) => fetchPokemonDetails(pokemon.url))
     );
 
     //return the search results
@@ -75,7 +77,7 @@ export async function GET(request: NextRequest) {
 
     //GET pokemon details for each search result
     const data: Pokemon[] = await Promise.all(
-      response?.data.results.map((pokemon: any) =>
+      response?.data.results.map((pokemon: Details) =>
         fetchPokemonDetails(pokemon.url)
       )
     );

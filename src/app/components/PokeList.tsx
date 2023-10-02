@@ -64,7 +64,7 @@ const PokeList = ({ initialData }: PokeListProps) => {
             w={"80%"}
             placeholder="Search by name or Pokédex #"
           />
-          {data?.map((pokemon: any) => {
+          {data?.map((pokemon: Pokemon) => {
             return (
               <Group
                 align="center"
