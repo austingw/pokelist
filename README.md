@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# PokeList
 
 ## Getting Started
 
-First, run the development server:
+In order to run the app, you will need to install [pnpm](https://pnpm.io/)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+If you have npm installed already, this can be done by running
+`npm i -g pnpm`
+
+Then install dependencies with
+`pnpm i`
+
+and then run the development server with
+`pnpm dev`
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Built With
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. Next.js - I used the app router
+2. Mantine - Very great UI library
+3. Tanstack Query -
+4. Axios
 
-## Learn More
+# A list of code copied in from sources such as Stack Overflow
 
-To learn more about Next.js, take a look at the following resources:
+N/A, I only consulted the documentation for the tools listed above.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+• How long was spent on the project?
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+I spent a little under five hours, due to wanting to hit the stretch goals.
 
-## Deploy on Vercel
+• What are areas you chose to focus in to show off your strengths?
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+I wanted to focus clean code, project structure, and a user-friendly UI, which is why I went with Mantine for the UI. I use Material UI often at my current role, but find Mantine really interesting due to their hooks, such as the ones I used for debounced search and modal state.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+• What is a particular area you took a shortcut for time and what you might do differently in a
+real production codebase?
+
+I would say the main shortcut was using mostly default Mantine theming, though I did add some custom styles for the list rows. I think UI/component libraries work great in production when additional time is put in for theming.
+
+I also used Next's App router for this project, which is great for many things, but I think I would agree with common sentiment that it's still better to use the Pages router for production due to some behavior and compatability issues.
+
+• Anything else you wish to share, and think is worth knowing while the project is evaluated.
