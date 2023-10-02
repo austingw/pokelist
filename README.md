@@ -6,7 +6,7 @@ This app is live at [pokelist.vercel.app](https://pokelist.vercel.app)
 
 In order to run the app, you will need to install [pnpm](https://pnpm.io/)
 
-Then install dependencies with
+Install dependencies with
 
 `pnpm i`
 
