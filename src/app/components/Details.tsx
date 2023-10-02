@@ -2,11 +2,9 @@ import { Pokemon } from "../types/Pokemon";
 import {
   Accordion,
   Badge,
-  Divider,
   Flex,
   Group,
   Image,
-  ScrollArea,
   Stack,
   Table,
   Text,
